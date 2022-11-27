@@ -1,5 +1,19 @@
 version: '3'
+
 services:
+  producer:
+    container_name: producer
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+
+  consumer:
+    container_name: consumer
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
 
   rabbitmq:
     image: rabbitmq:3-management
@@ -9,3 +23,4 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+    restart: unless-stopped
